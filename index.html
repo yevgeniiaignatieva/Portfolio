@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yevheniia Ihnatieva — Photographer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;500;600&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --ash: #1c1c1c;
+    --mist: #2e2d2a;
+    --sand: #9ed5cc;
+    --cream: #f0ece4;
+    --accent: #e2d2bb;
+    --silver: #d4d0c1;
+    --white: #faf9f6;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--white);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 30px; height: 30px;
+    border: 1px solid rgba(255, 248, 238, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s ease;
+  }
+  body:hover .cursor-ring { opacity: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 52px;
+    mix-blend-mode: normal;
+    font-weight: 400;
+  }
+  nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(13,13,11,0.9) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    font-weight: 400;
+  }
+  .nav-logo span { color: var(--accent); font-style: italic; }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    position: relative;
+    z-index: 1;
+    font-weight: 400;
+  }
+  .nav-links a {
+    font-family: 'Barlow Condensed', italic;
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 400;
+  }
+  .nav-links a:hover { color: var(--cream); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      url('images/top.JPG') center/cover no-repeat;
+    transform: scale(1.04);
+    animation: heroZoom 12s ease-in-out forwards;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.0); }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(13,13,11,0.25) 0%,
+      rgba(13,13,11,0.1) 40%,
+      rgba(13,13,11,0.85) 100%
+    );
+  }
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 52px 68px;
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.5s ease forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.27em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 7vw, 6.2rem);
+    line-height: 0.95;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--sand);
+  }
+  .hero-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-top: 22px;
+  }
+  .hero-scroll {
+    position: absolute;
+    right: 52px;
+    bottom: 68px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeIn 1s 1.4s ease forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  .hero-scroll span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--silver);
+    writing-mode: vertical-rl;
+  }
+  .hero-scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollLine 2s 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* SECTION BASE */
+  section { padding: 100px 52px; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 28px; height: 1px;
+    background: var(--accent);
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+  .about-text h2 em { font-style: italic; color: var(--sand); }
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--silver);
+    margin-bottom: 16px;
+  }
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(184,149,106,0.3);
+    padding: 7px 16px;
+    transition: all 0.3s;
+  }
+  .tag:hover { background: var(--accent); color: var(--ink); }
+  .about-img {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+  .about-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  .about-img:hover img { transform: scale(1.04); }
+  .about-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(184,149,106,0.15);
+    pointer-events: none;
+  }
+  /* Offset decoration */
+  .about-img::before {
+    content: '';
+    position: absolute;
+    bottom: -18px; right: -18px;
+    width: 70%; height: 70%;
+    border: 1px solid rgba(184,149,106,0.12);
+    z-index: -1;
+  }
+
+  /* PORTFOLIO */
+  .portfolio { background: var(--ink); }
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 56px;
+  }
+  .portfolio-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.1;
+  }
+  .portfolio-header h2 em { font-style: italic; color: var(--sand); }
+  .filter-nav {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+  .filter-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--silver);
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 8px 20px;
+    cursor: none;
+    transition: all 0.3s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    color: var(--cream);
+    border-bottom-color: var(--accent);
+  }
+
+  /* 5-column masonry — natural aspect ratios, left-to-right fill order */
+  .grid {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .grid-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .grid-item {
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+    width: 100%;
+  }
+  .grid-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .grid-item:hover img { transform: scale(1.06); }
+  .grid-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,13,11,0.9) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    display: flex;
+    align-items: flex-end;
+    padding: 22px;
+  }
+  .grid-item:hover .grid-item-overlay { opacity: 1; }
+  .grid-item-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .grid-item[data-cat="equestrian"] { display: block; }
+  .grid-item.hidden { display: none; }
+
+  /* CATEGORIES */
+  .categories {
+    background: var(--ink);
+    padding: 15px 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  .cat-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    cursor: none;
+    border-radius: 2px;
+  }
+  .cat-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+    filter: brightness(0.65);
+  }
+  .cat-card:hover img { transform: scale(1.08); filter: brightness(0.75); }
+  .cat-card-body {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 36px 32px;
+    background: linear-gradient(to top, rgba(13,13,11,0.95) 0%, transparent 100%);
+  }
+  .cat-card-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2.8rem;
+    color: rgba(184,149,106,0.25);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .cat-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .cat-card-desc {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.3rem, 4.3vw, 4.3rem);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .contact-left h2 em { font-style: italic; color: var(--sand); }
+  .contact-left p {
+    color: var(--silver);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .contact-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+  .contact-detail-item .icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(184,149,106,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(138,136,128,0.2);
+    border-radius: 0;
+    padding: 14px 18px;
+    color: var(--cream);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+    cursor: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select { appearance: none; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    background: var(--accent);
+    color: var(--ink);
+    border: none;
+    cursor: none;
+    transition: all 0.3s;
+    align-self: flex-start;
+    font-weight: 600;
+  }
+  .btn:hover { background: var(--sand); }
+
+  /* TYPING INDICATOR */
+  .typing-indicator {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0 2px;
+  }
+  .typing-indicator.visible { display: flex; }
+  .typing-bubble {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(138,136,128,0.18);
+    border-radius: 12px 12px 12px 3px;
+    padding: 10px 14px;
+  }
+  .typing-bubble span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: typingDot 1.2s ease-in-out infinite;
+  }
+  .typing-bubble span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-bubble span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingDot {
+    0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-4px); }
+  }
+  .typing-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(138,136,128,0.5);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ash);
+    border-top: 1px solid rgba(138,136,128,0.12);
+    padding: 40px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--silver);
+  }
+  .footer-logo span { font-style: italic; color: var(--accent); }
+  .footer-copy {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(138,136,128,0.5);
+  }
+  .footer-socials {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-socials a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-socials a:hover { color: var(--accent); }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.22s; }
+  .reveal-delay-3 { transition-delay: 0.36s; }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(13,13,11,0.96);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 88vw;
+    max-height: 88vh;
+    object-fit: contain;
+    animation: lightboxIn 0.3s ease;
+  }
+  @keyframes lightboxIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 32px; right: 40px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--silver);
+    cursor: none;
+    transition: color 0.3s;
+  }
+  .lightbox-close:hover { color: var(--cream); }
+
+  /* ── SHOOT OVERLAY ─────────────────────────────────── */
+  .shoot-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--ink);
+    z-index: 150;
+    overflow-y: auto;
+    animation: shootIn 0.38s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .shoot-overlay.open { display: block; }
+  @keyframes shootIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .shoot-overlay-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 52px;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.98) 70%, transparent);
+  }
+  .shoot-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--silver);
+    background: none;
+    border: none;
+    cursor: none;
+    transition: color 0.3s;
+    padding: 0;
+  }
+  .shoot-back-btn:hover { color: var(--cream); }
+  .shoot-back-btn svg {
+    width: 14px; height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.5;
+    flex-shrink: 0;
+  }
+  .shoot-overlay-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+  .shoot-overlay-title em { font-style: italic; color: var(--sand); }
+  .shoot-overlay-meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+  .shoot-overlay-body {
+    padding: 8px 52px 80px;
+  }
+  .shoot-grid {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .shoot-grid-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .shoot-grid-item {
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+    width: 100%;
+  }
+  .shoot-grid-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .shoot-grid-item:hover img { transform: scale(1.05); }
+  .shoot-grid-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,10,10,0.25);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .shoot-grid-item:hover .shoot-grid-item-overlay { opacity: 1; }
+  .shoot-grid-item-overlay svg {
+    width: 32px; height: 32px;
+    stroke: var(--white);
+    fill: none;
+    stroke-width: 1.2;
+  }
+
+  /* Shoot cover cards in main gallery */
+  .grid-item[data-shoot] { cursor: none; }
+  .shoot-count-badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: rgba(10,10,10,0.7);
+    border: 1px solid rgba(184,149,106,0.3);
+    padding: 5px 10px;
+    backdrop-filter: blur(4px);
+  }
+
+  @media (max-width: 768px) {
+    .shoot-overlay-header { padding: 16px 20px; }
+    .shoot-overlay-body  { padding: 6px 20px 60px; }
+    .shoot-overlay-title { font-size: 1.1rem; }
+    .shoot-back-btn, .shoot-grid-item { cursor: auto; }
+    .shoot-grid-item-overlay { opacity: 0 !important; }
+  }
+
+  /* NAV SOCIALS DROPDOWN */
+  .nav-socials-dropdown { position: relative; }
+  .nav-more-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silver);
+    background: none;
+    border: none;
+    cursor: none;
+    font-weight: 400;
+    transition: color 0.3s;
+    padding: 0;
+  }
+  .nav-more-btn:hover,
+  .nav-more-btn.open { color: var(--cream); }
+  .nav-socials-menu {
+    position: absolute;
+    top: calc(100% + 18px);
+    right: 0;
+    background: rgba(18,17,15,0.97);
+    border: 1px solid rgba(138,136,128,0.18);
+    display: flex;
+    flex-direction: column;
+    min-width: 148px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+  .nav-socials-menu.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .nav-socials-menu a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    padding: 13px 20px;
+    border-bottom: 1px solid rgba(138,136,128,0.1);
+    transition: color 0.2s, background 0.2s;
+    font-weight: 300;
+  }
+  .nav-socials-menu a:last-child { border-bottom: none; }
+  .nav-socials-menu a:hover { color: var(--cream); background: rgba(255,255,255,0.04); }
+
+  /* HAMBURGER BUTTON */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    position: relative;
+    z-index: 1;
+    width: 32px;
+    height: 32px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--cream);
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* MOBILE NAV DRAWER */
+  @media (max-width: 768px) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+
+    nav { padding: 18px 20px; }
+
+    .nav-hamburger { display: flex; }
+
+    .nav-links {
+      position: fixed;
+      top: 0; right: 0;
+      width: 70vw;
+      max-width: 280px;
+      height: 100dvh;
+      background: rgba(13,13,11,0.98);
+      border-left: 1px solid rgba(138,136,128,0.15);
+      flex-direction: column;
+      gap: 0;
+      padding: 80px 32px 40px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      backdrop-filter: blur(12px);
+    }
+    .nav-links.open { transform: translateX(0); }
+
+    .nav-links li { border-bottom: 1px solid rgba(138,136,128,0.1); }
+    .nav-links li:last-child { border-bottom: none; }
+
+    .nav-links a {
+      display: block;
+      padding: 18px 0;
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+    }
+
+    /* Socials inside mobile nav — show inline, no dropdown */
+    .nav-socials-dropdown { position: static; }
+    .nav-more-btn { display: none; }
+    .nav-socials-menu {
+      position: static;
+      opacity: 1;
+      pointer-events: all;
+      transform: none;
+      background: none;
+      border: none;
+      flex-direction: row;
+      gap: 0;
+      flex-wrap: wrap;
+      padding-top: 8px;
+    }
+    .nav-socials-menu a {
+      padding: 12px 0;
+      border-bottom: none;
+      border-right: 1px solid rgba(138,136,128,0.1);
+      padding-right: 16px;
+      margin-right: 16px;
+      font-size: 0.72rem;
+    }
+    .nav-socials-menu a:last-child { border-right: none; }
+
+    /* Nav overlay */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 99;
+    }
+    .nav-overlay.open { display: block; }
+
+    section { padding: 60px 20px; }
+    .hero-content { padding: 0 20px 52px; }
+    .hero-scroll { right: 20px; bottom: 52px; }
+    .about { grid-template-columns: 1fr; gap: 30px; }
+    .about-img { max-height: 380px; }
+    .grid { gap: 6px; }
+    .grid-col:nth-child(n+3) { display: none; }
+    .shoot-grid { gap: 6px; }
+    .shoot-grid-col:nth-child(n+3) { display: none; }
+    .categories { grid-template-columns: 1fr; padding: 20px; gap: 12px; }
+    .cat-card { aspect-ratio: 16/9; }
+    .contact { grid-template-columns: 1fr; gap: 30px; }
+    .portfolio-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+    /* Filter nav: horizontally scrollable */
+    .filter-nav {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      width: 100%;
+      padding-bottom: 4px;
+    }
+    .filter-nav::-webkit-scrollbar { display: none; }
+    .filter-btn { white-space: nowrap; padding: 8px 16px; cursor: pointer; }
+
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Fix iOS zoom on input focus */
+    .form-group input,
+    .form-group textarea,
+    .form-group select { font-size: 16px; cursor: auto; }
+
+    /* Full-width button */
+    .btn { width: 100%; text-align: center; align-self: stretch; cursor: pointer; }
+
+    /* Fix cursor:none leftovers */
+    .grid-item, .cat-card, .filter-btn, .lightbox-close,
+    .nav-more-btn, .form-group input,
+    .form-group textarea, .form-group select { cursor: auto; }
+
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 20px; }
+  }
+
+  @media (max-width: 900px) and (min-width: 769px) {
+    nav { padding: 22px 24px; }
+    section { padding: 72px 24px; }
+    .hero-content { padding: 0 24px 52px; }
+    .hero-scroll { right: 24px; bottom: 52px; }
+    .about { grid-template-columns: 1fr; gap: 30px; }
+    .about-img { max-height: 440px; }
+    .grid { gap: 6px; }
+    .grid-col:nth-child(n+4) { display: none; }
+    .shoot-grid { gap: 6px; }
+    .shoot-grid-col:nth-child(n+4) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<div class="nav-overlay" id="navOverlay"></div>
+<nav>
+  <a href="#" class="nav-logo">Home</a>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#work" class="nav-close-link">Work</a></li>
+    <li><a href="#about" class="nav-close-link">About</a></li>
+    <li><a href="#contact" class="nav-close-link">Contact</a></li>
+    <li class="nav-socials-dropdown">
+      <button class="nav-more-btn" id="socialsBtn" aria-expanded="false">More ↗</button>
+      <div class="nav-socials-menu" id="socialsMenu">
+        <a href="https://instagram.com/euignph" target="_blank">Instagram</a>
+        <a href="https://www.behance.net/euignph" target="_blank">Behance</a>
+        <a href="https://www.linkedin.com/in/euignph" target="_blank">LinkedIn</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" role="img" aria-label="Hero background photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">VISUAL CREATOR &amp; STORYTELLER</div>
+    <h1 class="hero-title">
+      Yevheniia<br><em>Ihnatieva</em>
+    </h1>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<div class="categories">
+  <div class="cat-card reveal">
+    <img src="images/skidar.jpg" alt="Commercials">
+    <div class="cat-card-body">
+      <div class="cat-card-num">01</div>
+      <div class="cat-card-name">Commercials</div>
+      <div class="cat-card-desc">Impactful · Unique · Bold</div>
+    </div>
+  </div>
+  <div class="cat-card reveal reveal-delay-1">
+    <img src="images/corset 1.jpg" alt="Fine Art">
+    <div class="cat-card-body">
+      <div class="cat-card-num">02</div>
+      <div class="cat-card-name">Fine Art</div>
+      <div class="cat-card-desc">Individual · Expressive · Creative</div>
+    </div>
+  </div>
+  <div class="cat-card reveal reveal-delay-2">
+    <img src="images/esn2.JPG" alt="Events">
+    <div class="cat-card-body">
+      <div class="cat-card-num">03</div>
+      <div class="cat-card-name">Events</div>
+      <div class="cat-card-desc">Dynamic · Immersive · Live</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text reveal">
+    <div class="section-label">About</div>
+    <h2>A <em>visual</em> story<br>in every frame</h2>
+    <p>I am based in the Netherlands, specialising in fine art, commercial photography, sports, and live events. My lens finds the decisive moment — whether it's the energy of a concert crowd, or the quietude of light on a winter morning.</p>
+    <div class="about-tags">
+      <span class="tag">Sports</span>
+      <span class="tag">Commercial</span>
+      <span class="tag">Fine Art</span>
+      <span class="tag">Events</span>
+      <span class="tag">Fashion</span>
+    </div>
+  </div>
+  <div class="about-img reveal reveal-delay-1">
+    <img src="images/intro.jpg" alt="Yevheniia Ihnatieva">
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="work">
+  <div class="portfolio-header reveal">
+    <div>
+      <div class="section-label">Portfolio</div>
+      <h2>Selected <em>Works</em></h2>
+    </div>
+    <ul class="filter-nav">
+      <li><button class="filter-btn active" data-filter="all">All</button></li>
+      <li><button class="filter-btn" data-filter="equestrian">Equestrian</button></li>
+      <li><button class="filter-btn" data-filter="events">Events</button></li>
+      <li><button class="filter-btn" data-filter="commercial">Commercial</button></li>
+      <li><button class="filter-btn" data-filter="individual">Individual</button></li>
+    </ul>
+  </div>
+
+  <!-- shoot cover cards injected by JS -->
+  <div class="grid" id="gallery"></div>
+</section>
+
+<!-- SHOOT OVERLAY -->
+<div class="shoot-overlay" id="shootOverlay" aria-modal="true" role="dialog">
+  <div class="shoot-overlay-header">
+    <button class="shoot-back-btn" id="shootBackBtn" aria-label="Back to gallery">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+    <div class="shoot-overlay-title" id="shootOverlayTitle"></div>
+    <div class="shoot-overlay-meta" id="shootOverlayMeta"></div>
+  </div>
+  <div class="shoot-overlay-body">
+    <div class="shoot-grid" id="shootGrid"></div>
+  </div>
+</div>
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-left reveal">
+    <div class="section-label">Contact</div>
+    <h2>You have a <em>vision?</em><br>No matter the vibe <br>- I make it <em>work</em></h2>
+ <br/><br/>
+    <div class="contact-detail">
+      <div class="contact-detail-item">
+        <div class="icon">📍</div>
+        <span>Netherlands — available to travel</span>
+      </div>
+      <div class="contact-detail-item">
+        <div class="icon">🎯</div>
+        <span>Freelance &amp; Full-time available</span>
+      </div>
+    </div>
+  </div>
+  <form class="contact-form reveal reveal-delay-1" action="https://formspree.io/f/mwvarbpj" method="POST" id="contactForm">
+    <input type="hidden" name="_replyto" value="yevgeniiaignatieva@gmail.com">
+    <input type="hidden" name="_subject" value="New enquiry from portfolio website">
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" name="first_name" placeholder="Jane" required>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" name="last_name" placeholder="Doe">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="jane@mail.com" required>
+    </div>
+    <div class="form-group">
+      <label>Project Type</label>
+      <select name="project_type">
+        <option value="">Select a category</option>
+        <option>Equestrian / Animals</option>
+        <option>Commercial / Brand</option>
+        <option>Events</option>
+        <option>Fashion / Editorial</option>
+        <option>Individual / Couples</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea name="message" placeholder="Tell me about your idea…"></textarea>
+    </div>
+    <div id="formStatus" style="display:none; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; padding: 12px 0;"></div>
+    <div class="typing-indicator" id="typingIndicator">
+      <div class="typing-bubble">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="typing-label">typing…</div>
+    </div>
+    <button class="btn" type="submit">Send Enquiry</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 Yevheniia Ihnatieva. All rights reserved.</div>
+  <div class="footer-socials">
+    <a href="https://instagram.com/euignph" target="_blank">Instagram</a>
+    <a href="https://www.behance.net/euignph" target="_blank">Behance</a>
+    <a href="https://www.linkedin.com/in/euignph" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close" id="lightboxClose">✕ Close</div>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  // ═══════════════════════════════════════════════════════
+  //  SHOOTS DATA
+  //  Each shoot has: id, name, cat (space-separated filter
+  //  keys), cover image, and photos array.
+  //
+  //  HOW TO ADD A NEW SHOOT:
+  //  1. Copy one of the objects below and paste it into the array
+  //  2. Set cover: to the folder thumbnail
+  //  3. Add all photos to the photos: [] array
+  //  4. Set cat: to one or more of: equestrian events commercial individual
+  // ═══════════════════════════════════════════════════════
+  const SHOOTS = [
+    {
+      id: 'equestrian-brand',
+      name: 'Equestrian Brand',
+      cat: 'equestrian commercial',
+      cover: 'https://mir-s3-cdn-cf.behance.net/projects/max_808/6d796d234565271.68c5e2b4efa17.jpg',
+      photos: [
+        'images/skidar0.JPG',
+        'images/skidar.JPG',
+        'images/skidar1.JPG',
+        'images/skidar2.jpg',
+        'images/skidar3.JPG',
+        'images/skidar4.JPG',
+        'images/skidar5.JPG',
+        'images/skidar6.JPG',
+        'images/skidar7.JPG',
+        'images/skidar8.JPG',
+        'images/skidar9.JPG',
+        'images/skidar10.JPG',
+        'images/skidar11.JPG',
+        'images/skidar12.JPG',
+        'images/skidar13.JPG',
+        'images/skidar14.JPG',
+        'images/skidar15.JPG',
+        'images/skidar16.JPG',
+        'images/skidar17.JPG',
+        'images/skidar18.JPG',
+        'images/skidar19.JPG',
+        'images/skidar20.JPG',
+        'images/skidar21.JPG',
+      ]
+    },
+    {
+      id: 'sunrise-horses',
+      name: 'Sunrise with Horses',
+      cat: 'equestrian',
+      cover: 'images/sunrise1.JPG',
+      photos: [
+        'images/sunrise1.JPG',
+        'images/sunrise2.JPG',
+        'images/sunrise3.JPG',
+        'images/sunrise4.JPG',
+        'images/sunrise5.JPG',
+        'images/sunrise6.JPG',
+        'images/sunrise7.JPG',
+        'images/sunrise8.JPG',
+        'images/sunrise9.JPG',
+        'images/sunrise10.JPG',
+        'images/sunrise11.JPG',
+      ]
+    },
+    {
+      id: 'purity',
+      name: 'Purity',
+      cat: 'individual',
+      cover: 'images/purity 7.JPG',
+      photos: [
+        'images/purity.JPG',
+        'images/purity 1.JPG',
+        'images/purity 2.JPG',
+        'images/purity 3.JPG',
+        'images/purity 4.JPG',
+        'images/purity 5.JPG',
+        'images/purity 6.JPG',
+        'images/purity 7.JPG',
+        'images/purity 8.JPG',
+        'images/purity 9.JPG',
+        'images/purity 10.JPG',
+        'images/purity 11.JPG',
+        'images/purity 12.JPG',
+        'images/purity 13.JPG',
+        'images/purity 14.JPG',
+        'images/purity 15.JPG',
+        'images/purity 16.JPG',
+        'images/purity 17.JPG',
+        'images/purity 18.JPG',
+        'images/purity 19.JPG',
+        'images/purity 20.JPG',
+        'images/purity 21.JPG',
+      ]
+    },
+    {
+      id: 'concert-nights',
+      name: 'Concert Nights',
+      cat: 'events',
+      cover: 'images/concert.JPG',
+      photos: [
+        'images/concert.JPG',
+        'images/concert1.JPG',
+        'images/concert2.JPG',
+        'images/concert3.JPG',
+        'images/concert4.JPG',
+        'images/concert5.JPG',
+        'images/concert6.JPG',
+        'images/concert7.JPG',
+        'images/concert8.JPG',
+        'images/concert9.JPG',
+        'images/concert10.JPG',
+        'images/concert11.JPG',
+        'images/concert12.JPG',
+        'images/concert13.JPG',
+        'images/concert14.JPG',
+        'images/concert15.JPG',
+        'images/concert16.JPG',
+      ]
+    },
+    {
+      id: 'club-lights',
+      name: 'ESN intro week',
+      cat: 'events',
+      cover: 'images/esn26.JPG',
+      photos: [
+        'images/esn.JPG',
+        'images/esn1.JPG',
+        'images/esn2.JPG',
+        'images/esn3.JPG',
+        'images/esn4.JPG',
+        'images/esn5.JPG',
+        'images/esn6.JPG',
+        'images/esn7.JPG',
+        'images/esn8.JPG',
+        'images/esn9.JPG',
+        'images/esn10.JPG',
+        'images/esn11.JPG',
+        'images/esn12.JPG',
+        'images/esn13.JPG',
+        'images/esn14.JPG',
+        'images/esn15.JPG',
+        'images/esn16.JPG',
+        'images/esn17.JPG',
+        'images/esn18.JPG',
+        'images/esn19.JPG',
+        'images/esn20.JPG',
+        'images/esn21.JPG',
+        'images/esn22.JPG',
+        'images/esn23.JPG',
+        'images/esn24.JPG',
+        'images/esn25.JPG',
+        'images/esn26.JPG',
+      ]
+    },
+    {
+      id: 'in-the-garden',
+      name: 'In the Garden',
+      cat: 'individual',
+      cover: 'images/in the garden 1.JPG',
+      photos: [
+        'images/in the garden 1.JPG',
+        'images/in the garden 2.JPG',
+        'images/in the garden 3.JPG',
+        'images/in the garden 4.JPG',
+        'images/in the garden 5.JPG',
+        'images/in the garden 6.JPG',
+        'images/in the garden 7.JPG',
+        'images/in the garden 8.JPG',
+      ]
+    },
+    {
+      id: 'iventorka',
+      name: 'Youth Events - Iventorka',
+      cat: 'events',
+      cover: 'images/iventorka.JPG',
+      photos: [
+        'images/iventorka.JPG',
+        'images/iventorka1.JPG',
+        'images/iventorka2.JPG',
+        'images/iventorka3.JPG',
+        'images/iventorka4.JPG',
+        'images/iventorka5.JPG',
+        'images/iventorka6.JPG',
+        'images/iventorka7.JPG',
+        'images/iventorka8.JPG',
+        'images/iventorka9.JPG',
+        'images/iventorka10.JPG',
+        'images/iventorka11.JPG',
+        'images/iventorka12.JPG',
+        'images/iventorka13.JPG',
+        'images/iventorka14.JPG',
+        'images/iventorka15.JPG',
+        'images/iventorka16.JPG',
+        'images/iventorka17.JPG',
+        'images/iventorka18.JPG',
+        'images/iventorka19.JPG',
+        'images/iventorka20.JPG',
+        'images/iventorka21.JPG',
+        'images/iventorka22.JPG',
+        'images/iventorka23.JPG',
+      ]
+    },
+    {
+      id: 'corset-shoot',
+      name: 'Corset lingerie',
+      cat: 'individual',
+      cover: 'images/corset 1.JPG',
+      photos: [
+        'images/corset 7.JPG',
+        'images/corset 1.JPG',
+        'images/corset 2.jpg',
+        'images/corset 3.JPG',
+        'images/corset 4.JPG',
+        'images/corset 5.JPG',
+        'images/corset 6.JPG',
+        'images/corset.JPG',
+        'images/corset 8.JPG',
+        'images/corset 9.JPG',
+      ]
+    },
+    {
+      id: 'reflections',
+      name: 'Reflections',
+      cat: 'individual',
+      cover: 'images/river.JPG',
+      photos: [
+        'images/river.JPG',
+        'images/river1.JPG',
+        'images/river2.JPG',
+        'images/river3.JPG',
+        'images/river4.jpg',
+        'images/river5.JPG',
+        'images/river6.JPG',
+        'images/river7.JPG',
+      ]
+    },
+    {
+      id: 'broken-doll',
+      name: 'Broken Doll',
+      cat: 'individual',
+      cover: 'images/broken doll 10.JPG',
+      photos: [
+        'images/broken doll 1.jpg',
+        'images/broken doll 2.JPG',
+        'images/broken doll 3.JPG',
+        'images/broken doll 4.JPG',
+        'images/broken doll 5.JPG',
+        'images/broken doll 6.JPG',
+        'images/broken doll 7.JPG',
+        'images/broken doll 8.JPG',
+        'images/broken doll 9.JPG',
+        'images/broken doll 10.JPG',
+        'images/broken doll 11.JPG',
+        'images/broken doll 12.JPG',
+        'images/broken doll 13.JPG',
+        'images/broken doll 14.JPG',
+        'images/broken doll 15.JPG',
+        'images/broken doll 16.JPG',
+
+      ]
+    },
+    {
+      id: 'City',
+      name: 'City',
+      cat: 'individual',
+      cover: 'images/city.JPG',
+      photos: [
+        'images/city.JPG',
+        'images/city1.JPG',
+        'images/city2.JPG',
+        'images/city3.JPG',
+        'images/city4.JPG',
+        'images/city5.JPG',
+        'images/city6.JPG',
+        'images/city7.JPG',
+        'images/city8.JPG',
+        'images/city9.JPG',
+        'images/city10.JPG',
+        'images/city11.JPG',
+        'images/city12.JPG',
+        'images/city13.JPG',
+        'images/city14.JPG',
+        'images/city15.JPG',
+      ]
+    },
+    {
+      id: 'piano-portraits',
+      name: 'Piano',
+      cat: 'individual',
+      cover: 'images/piano 3.JPG',
+      photos: [
+        'images/piano.JPG',
+        'images/piano 1.JPG',
+        'images/piano 2.jpg',
+        'images/piano 3.JPG',
+        'images/piano 4.JPG',
+      ]
+    },
+    {
+      id: 'pillowcase',
+      name: 'The Pillowcase',
+      cat: 'individual commercial',
+      cover: 'images/pillowcase.JPG',
+      photos: [
+        'images/pillowcase.JPG',
+        'images/pillowcase 1.JPG',
+        'images/pillowcase 2.jpg',
+        'images/pillowcase 3.JPG',
+        'images/pillowcase 4.JPG',
+        'images/pillowcase 5.JPG',
+        'images/pillowcase 6.JPG',
+        'images/pillowcase 7.JPG',
+        'images/pillowcase 8.JPG',
+        'images/pillowcase 9.JPG',
+        'images/pillowcase 10.JPG',
+        'images/pillowcase 11.JPG',
+        'images/pillowcase 12.JPG',
+        'images/pillowcase 13.JPG',
+      ]
+    },
+    {
+      id: 'orangery',
+      name: 'Orangery',
+      cat: 'individual',
+      cover: 'images/orangery.JPG',
+      photos: [
+        'images/orangery.JPG',
+        'images/orangery1.JPG',
+        'images/orangery2.jpg',
+        'images/orangery3.JPG',
+        'images/orangery4.JPG',
+        'images/orangery5.JPG',
+        'images/orangery6.JPG',
+        'images/orangery7.JPG',
+        'images/orangery8.JPG',
+        'images/orangery9.JPG',
+        'images/orangery10.JPG',
+        'images/orangery11.JPG',
+        'images/orangery12.JPG',
+    ]
+    },
+    {
+      id: 'STARS EU competitions',
+      name: 'STARS EU competitions',
+      cat: 'events',
+      cover: 'images/stars eu 1.JPG',
+      photos: [
+        'images/stars eu.JPG',
+        'images/stars eu 1.JPG',
+        'images/stars eu 2.jpg',
+        'images/stars eu 3.JPG',
+        'images/stars eu 4.JPG',
+        'images/stars eu 5.JPG',
+        'images/stars eu 6.JPG',
+        'images/stars eu 7.JPG',
+        'images/stars eu 8.JPG',
+        'images/stars eu 9.JPG',
+        'images/stars eu 10.JPG',
+        'images/stars eu 11.JPG',
+        'images/stars eu 12.JPG',
+        'images/stars eu 13.JPG',
+        'images/stars eu 14.JPG',
+        'images/stars eu 15.JPG',
+        'images/stars eu 16.JPG',
+        'images/stars eu 17.JPG',
+        'images/stars eu 18.JPG',
+        'images/stars eu 19.JPG',
+        'images/stars eu 20.JPG',
+        'images/stars eu 21.JPG',
+        'images/stars eu 22.JPG',
+    ]
+    },
+    {
+      id: 'morning fog',
+      name: 'Morning Fog',
+      cat: 'equestrian',
+      cover: 'images/morning fog14.JPG',
+      photos: [
+        'images/morning fog.JPG',
+        'images/morning fog1.JPG',
+        'images/morning fog2.jpg',
+        'images/morning fog3.JPG',
+        'images/morning fog4.JPG',
+        'images/morning fog5.JPG',
+        'images/morning fog6.JPG',
+        'images/morning fog7.JPG',
+        'images/morning fog8.JPG',
+        'images/morning fog9.JPG',
+        'images/morning fog10.JPG',
+        'images/morning fog11.JPG',
+        'images/morning fog12.JPG',
+        'images/morning fog13.JPG',
+        'images/morning fog14.JPG',
+        'images/morning fog15.JPG',
+        'images/morning fog16.JPG',
+    ]
+    },
+    {
+      id: 'smoke',
+      name: 'Smoke',
+      cat: 'individual',
+      cover: 'images/smoke.JPG',
+      photos: [
+        'images/smoke.JPG',
+        'images/smoke1.JPG',
+        'images/smoke2.jpg',
+    ]
+    },
+    {
+      id: 'On the rocks',
+      name: 'On the rocks',
+      cat: 'individual',
+      cover: 'images/on the rocks.JPG',
+      photos: [
+        'images/on the rocks.JPG',
+        'images/on the rocks 1.JPG',
+        'images/on the rocks 2.jpg',
+        'images/on the rocks 3.JPG',
+        'images/on the rocks 4.JPG',
+        'images/on the rocks 5 .JPG',
+        'images/on the rocks 6.JPG',
+        'images/on the rocks 7.JPG',
+        'images/on the rocks 8.JPG',
+        'images/on the rocks 9.JPG',
+        'images/on the rocks 10.JPG',
+        'images/on the rocks 11.JPG',
+        'images/on the rocks 12.JPG',
+        'images/on the rocks 13.JPG',
+        'images/on the rocks 14.JPG',
+    ]
+    },
+    {
+      id: 'oak tree',
+      name: 'The Oak Tree',
+      cat: 'individual',
+      cover: 'images/on the tree.JPG',
+      photos: [
+        'images/on the tree.JPG',
+        'images/on the tree1.JPG',
+        'images/on the tree2.jpg',
+    ]
+    },
+    {
+      id: 'Field',
+      name: 'In the field',
+      cat: 'equestrian',
+      cover: 'images/field1.JPG',
+      photos: [
+        'images/field.JPG',
+        'images/field1.JPG',
+        'images/field2.jpg',
+        'images/field3.JPG',
+        'images/field4.JPG',
+        'images/field5.JPG',
+        'images/field6.JPG',
+        'images/field7.JPG',
+        'images/field8.JPG',
+        'images/field9.JPG',
+        'images/field10.JPG',
+        'images/field11.JPG',
+        'images/field12.JPG',
+        'images/field13.JPG',
+    ]
+    },
+    {
+      id: 'roses',
+      name: 'Roses',
+      cat: 'individual',
+      cover: 'images/roses.JPG',
+      photos: [
+        'images/roses.JPG',
+        'images/roses1.JPG',
+        'images/roses2.jpg',
+    ]
+    },
+    {
+      id: 'kids',
+      name: 'Childhood',
+      cat: 'individual',
+      cover: 'images/kids 0.JPG',
+      photos: [
+        'images/kids 0.JPG',
+        'images/kids 1.JPG',
+        'images/kids 2.jpg',
+        'images/kids 3.jpg',
+        'images/kids 4.jpg',
+        'images/kids 5.jpg',
+    ]
+    },
+    {
+      id: 'Trust',
+      name: 'Trust',
+      cat: 'equestrian',
+      cover: 'images/friend.JPG',
+      photos: [
+        'images/friend.JPG',
+        'images/friend1.JPG',
+        'images/friend2.jpg',
+    ]
+    },
+    {
+      id: 'stairwell',
+      name: 'Stairwell',
+      cat: 'individual',
+      cover: 'images/raduzhna1.JPG',
+      photos: [
+        'images/raduzhna.JPG',
+        'images/raduzhna1.JPG',
+        'images/raduzhna2.jpg',
+        'images/raduzhna3.JPG',
+        'images/raduzhna4.JPG',
+    ]
+    },
+    {
+      id: 'winter sunlight',
+      name: 'Winter Sunlight',
+      cat: 'individual',
+      cover: 'images/winter sunlight.JPG',
+      photos: [
+        'images/winter sunlight.JPG',
+        'images/winter sunlight 1.JPG',
+        'images/winter sunlight 2.jpg',
+        'images/winter sunlight 3.JPG',
+        'images/winter sunlight 4.JPG',
+        'images/winter sunlight 5.JPG',
+        'images/winter sunlight 6.JPG',
+        'images/winter sunlight 7.JPG',
+        'images/winter sunlight 8.JPG',
+        'images/winter sunlight 9.JPG',
+    ]
+    },
+    {
+        id: 'funky',
+        name: 'Funky',
+        cat: 'individual',
+        cover: 'images/funky2.JPG',
+        photos: [
+          'images/funky.JPG',
+          'images/funky1.JPG',
+          'images/funky2.jpg',
+          'images/funky3.JPG',
+          'images/funky4.JPG',
+          'images/funky5.JPG',
+          'images/funky6.JPG',
+      ]
+      },
+      {
+        id: 'night in gro',
+        name: 'Night',
+        cat: 'individual',
+        cover: 'images/night gro.JPG',
+        photos: [
+          'images/night gro.JPG',
+          'images/night gro 1.JPG',
+          'images/night gro 2.jpg',
+          'images/night gro 3.JPG',
+      ]
+      },
+  ];
+
+  // ── BUILD COVER GRID ────────────────────────────────────
+  function buildCoverGrid(filter) {
+    const gallery = document.getElementById('gallery');
+    gallery.innerHTML = '';
+
+    const filtered = filter === 'all'
+      ? SHOOTS
+      : SHOOTS.filter(s => s.cat.split(' ').includes(filter));
+
+    const NUM_COLS = 5;
+    const cols = Array.from({ length: NUM_COLS }, () => {
+      const col = document.createElement('div');
+      col.className = 'grid-col';
+      gallery.appendChild(col);
+      return col;
+    });
+
+    filtered.forEach((shoot, i) => {
+      const item = document.createElement('div');
+      item.className = 'grid-item';
+      item.dataset.cat = shoot.cat;
+      item.dataset.shoot = shoot.id;
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', `Open ${shoot.name} photoshoot`);
+
+      item.innerHTML = `
+        <img src="${shoot.cover}" alt="${shoot.name}">
+        <div class="grid-item-overlay">
+          <span class="grid-item-title">${shoot.name}</span>
+        </div>
+        <div class="shoot-count-badge">${shoot.photos.length} photos</div>
+      `;
+
+      item.addEventListener('click', () => openShoot(shoot.id));
+      item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openShoot(shoot.id); });
+
+      cols[i % NUM_COLS].appendChild(item);
+    });
+
+    attachCursorHover();
+  }
+
+  // ── SHOOT OVERLAY ───────────────────────────────────────
+  let currentLightboxPhotos = [];
+
+  function openShoot(id) {
+    const shoot = SHOOTS.find(s => s.id === id);
+    if (!shoot) return;
+
+    currentLightboxPhotos = shoot.photos;
+
+    document.getElementById('shootOverlayTitle').innerHTML =
+      shoot.name.replace(/(\S+)\s*$/, '<em>$1</em>');
+    document.getElementById('shootOverlayMeta').textContent =
+      `${shoot.photos.length} photos · ${shoot.cat.split(' ').map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(' / ')}`;
+
+    // Build inner grid
+    const grid = document.getElementById('shootGrid');
+    grid.innerHTML = '';
+
+    const NUM_COLS = 5;
+    const cols = Array.from({ length: NUM_COLS }, () => {
+      const col = document.createElement('div');
+      col.className = 'shoot-grid-col';
+      grid.appendChild(col);
+      return col;
+    });
+
+    shoot.photos.forEach((src, i) => {
+      const item = document.createElement('div');
+      item.className = 'shoot-grid-item';
+      item.innerHTML = `
+        <img src="${src}" alt="${shoot.name} — photo ${i + 1}">
+        <div class="shoot-grid-item-overlay">
+          <svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      `;
+      item.addEventListener('click', () => openLightboxFromShoot(src));
+      cols[i % NUM_COLS].appendChild(item);
+    });
+
+    const overlay = document.getElementById('shootOverlay');
+    overlay.classList.add('open');
+    overlay.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeShoot() {
+    document.getElementById('shootOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('shootBackBtn').addEventListener('click', closeShoot);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (document.getElementById('lightbox').classList.contains('open')) {
+        document.getElementById('lightbox').classList.remove('open');
+      } else {
+        closeShoot();
+      }
+    }
+  });
+
+  // ── LIGHTBOX (from inside a shoot) ─────────────────────
+  function openLightboxFromShoot(src) {
+    const lbImg = document.getElementById('lightboxImg');
+    lbImg.src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  document.getElementById('lightboxClose').addEventListener('click', () => {
+    document.getElementById('lightbox').classList.remove('open');
+  });
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target === document.getElementById('lightbox'))
+      document.getElementById('lightbox').classList.remove('open');
+  });
+
+  // ── FILTER ──────────────────────────────────────────────
+  let activeFilter = 'all';
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      buildCoverGrid(activeFilter);
+    });
+  });
+
+  // Initial render
+  buildCoverGrid('all');
+
+  // ── CURSOR ──────────────────────────────────────────────
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+
+  function attachCursorHover() {
+    document.querySelectorAll('a, button, .grid-item, .cat-card, .shoot-grid-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.width = '56px'; ring.style.height = '56px';
+        ring.style.borderColor = 'rgba(184,149,106,0.7)';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.width = '36px'; ring.style.height = '36px';
+        ring.style.borderColor = 'rgba(184,149,106,0.4)';
+      });
+    });
+  }
+  attachCursorHover();
+
+  // ── HAMBURGER NAV ───────────────────────────────────────
+  const hamburger = document.getElementById('navHamburger');
+  const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+  function openNav() {
+    hamburger.classList.add('open'); navLinks.classList.add('open');
+    navOverlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', true);
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    hamburger.classList.remove('open'); navLinks.classList.remove('open');
+    navOverlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', e => {
+    e.stopPropagation();
+    navLinks.classList.contains('open') ? closeNav() : openNav();
+  });
+  navOverlay.addEventListener('click', closeNav);
+  document.querySelectorAll('.nav-close-link').forEach(l => l.addEventListener('click', closeNav));
+
+  // ── SOCIALS DROPDOWN ────────────────────────────────────
+  const socialsBtn = document.getElementById('socialsBtn');
+  const socialsMenu = document.getElementById('socialsMenu');
+  socialsBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    const isOpen = socialsMenu.classList.toggle('open');
+    socialsBtn.classList.toggle('open', isOpen);
+    socialsBtn.setAttribute('aria-expanded', isOpen);
+  });
+  document.addEventListener('click', () => {
+    socialsMenu.classList.remove('open');
+    socialsBtn.classList.remove('open');
+    socialsBtn.setAttribute('aria-expanded', false);
+  });
+
+  // ── SCROLL REVEAL ───────────────────────────────────────
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+  // ── TYPING INDICATOR ────────────────────────────────────
+  const typingIndicator = document.getElementById('typingIndicator');
+  let typingTimeout;
+  document.querySelectorAll('.contact-form input, .contact-form textarea, .contact-form select').forEach(field => {
+    field.addEventListener('input', () => {
+      typingIndicator.classList.add('visible');
+      clearTimeout(typingTimeout);
+      typingTimeout = setTimeout(() => typingIndicator.classList.remove('visible'), 1500);
+    });
+    field.addEventListener('blur', () => {
+      clearTimeout(typingTimeout);
+      typingTimeout = setTimeout(() => typingIndicator.classList.remove('visible'), 800);
+    });
+  });
+
+  // ── CONTACT FORM ─────────────────────────────────────────
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = contactForm.querySelector('.btn');
+      btn.textContent = 'Sending…'; btn.style.opacity = '0.6';
+      const data = new FormData(contactForm);
+      try {
+        const res = await fetch('https://formspree.io/f/mwvarbpj', {
+          method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          formStatus.style.display = 'block';
+          formStatus.style.color = 'var(--sand)';
+          formStatus.textContent = '✓ Message sent — I\'ll be in touch soon!';
+          contactForm.reset(); btn.textContent = 'Send Enquiry'; btn.style.opacity = '1';
+        } else { throw new Error(); }
+      } catch {
+        formStatus.style.display = 'block';
+        formStatus.style.color = '#e07070';
+        formStatus.textContent = '✕ Something went wrong. Please try again.';
+        btn.textContent = 'Send Enquiry'; btn.style.opacity = '1';
+      }
+    });
+  }
+</script>
+</body>
+</html>
